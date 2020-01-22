@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField,widgets
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
@@ -19,3 +19,13 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), ])
     remember = BooleanField('remember me')
     submit = SubmitField('Login')
+
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
+class ExampleForm(FlaskForm):
+    choices = MultiCheckboxField('Routes', coerce=int)
+    submit = SubmitField("Set User Choices")
