@@ -75,8 +75,8 @@ def extract_element_from_json(obj, path):
         return outer_arr
 
 
-columns_json = open("/home/nikhil/Documents/Projects/flask_tutorials/basics/recommender/static/DB_labels.srj", "r")
-ontology_json = open("/home/nikhil/Documents/Projects/flask_tutorials/basics/recommender/static/onto.srj", "r")
+columns_json = open("/home/nikhil/Documents/Projects/flask_recommender/basics/recommender/static/DB_labels.srj", "r")
+ontology_json = open("/home/nikhil/Documents/Projects/flask_recommender/basics/recommender/static/onto.srj", "r")
 
 columns_df = json.load(columns_json)
 ontology_list = json.load(ontology_json)
@@ -198,6 +198,7 @@ def return_historical_finds(search_str):
             history.append({"label": i.DB, 'iri': i.Ontology, 'match_ratio': i.match_ratio})
     return history
 
+print(return_historical_finds("male"))
 
 def get_predicted_labels(ip_label):
     predicted_labels_with_iri = []
