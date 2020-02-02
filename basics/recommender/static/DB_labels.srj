@@ -1,1 +1,418 @@
-{"head":{"vars":["iri","label","engLabel"]},"results":{"bindings":[{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.PCI"},"engLabel":{"xml:lang":"en","type":"literal","value":"PCI"},"label":{"type":"literal","value":"PCI"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.Geboortemaand"},"engLabel":{"xml:lang":"en","type":"literal","value":"Outcome.Birth Month"},"label":{"type":"literal","value":"Geboortemaand"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.Geslacht"},"engLabel":{"xml:lang":"en","type":"literal","value":"Outcome.Gender"},"label":{"type":"literal","value":"Geslacht"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.Invoerdatum"},"engLabel":{"xml:lang":"en","type":"literal","value":"Outcome.Entry Date"},"label":{"type":"literal","value":"Invoerdatum"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.VraagType"},"engLabel":{"xml:lang":"en","type":"literal","value":"Outcome.Question Type"},"label":{"type":"literal","value":"VraagType"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.Vraagstelling"},"engLabel":{"xml:lang":"en","type":"literal","value":"Outcome.Question"},"label":{"type":"literal","value":"Vraagstelling"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Outcome.Antwoord"},"engLabel":{"xml:lang":"en","type":"literal","value":"Outcome.Answer"},"label":{"type":"literal","value":"Antwoord"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.PCI"},"engLabel":{"xml:lang":"en","type":"literal","value":"PCI"},"label":{"type":"literal","value":"PCI"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Geboortemaand"},"engLabel":{"xml:lang":"en","type":"literal","value":"Birth Month"},"label":{"type":"literal","value":"Geboortemaand"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Geslacht"},"engLabel":{"xml:lang":"en","type":"literal","value":"Gender"},"label":{"type":"literal","value":"Geslacht"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Overleden"},"engLabel":{"xml:lang":"en","type":"literal","value":"Death"},"label":{"type":"literal","value":"Overleden"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Datum_overlijden"},"engLabel":{"xml:lang":"en","type":"literal","value":"date of death"},"label":{"type":"literal","value":"Datum overlijden"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Laatste_datum_check_in_leven"},"engLabel":{"xml:lang":"en","type":"literal","value":"is alive last checked date"},"label":{"type":"literal","value":"Laatste datum check in leven"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Diagnose"},"engLabel":{"xml:lang":"en","type":"literal","value":"Diagnosis"},"label":{"type":"literal","value":"Diagnose"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Datum_diagnose"},"engLabel":{"xml:lang":"en","type":"literal","value":"Date of Diagnosis"},"label":{"type":"literal","value":"Datum diagnose"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.cT"},"engLabel":{"xml:lang":"en","type":"literal","value":"clinical T stage"},"label":{"type":"literal","value":"cT"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.cN"},"engLabel":{"xml:lang":"en","type":"literal","value":"clinical N stage"},"label":{"type":"literal","value":"cN"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.cM"},"engLabel":{"xml:lang":"en","type":"literal","value":"clinical M stage"},"label":{"type":"literal","value":"cM"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.PBD"},"engLabel":{"xml:lang":"en","type":"literal","value":"plan radiation target area"},"label":{"type":"literal","value":"PBD"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Zorgplan"},"engLabel":{"xml:lang":"en","type":"literal","value":"Health Plan"},"label":{"type":"literal","value":"Zorgplan"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Doelvolume_deel"},"engLabel":{"xml:lang":"en","type":"literal","value":"Target Volume part"},"label":{"type":"literal","value":"Doelvolume deel"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_fractiedosis"},"engLabel":{"xml:lang":"en","type":"literal","value":"EPD - Prescribed fraction dose"},"label":{"type":"literal","value":"EPD - Voorgeschreven fractiedosis"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_aantal_fracties"},"engLabel":{"xml:lang":"en","type":"literal","value":"EPD - Prescribed number of fractions"},"label":{"type":"literal","value":"EPD - Voorgeschreven aantal fracties"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_aantal_fracties_per_dag"},"engLabel":{"xml:lang":"en","type":"literal","value":"EPD - Prescribed number of fractions per day"},"label":{"type":"literal","value":"EPD - Voorgeschreven aantal fracties per dag"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_plandosis"},"engLabel":{"xml:lang":"en","type":"literal","value":"EPD - Prescribed planosis"},"label":{"type":"literal","value":"EPD - Voorgeschreven plandosis"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Gegeven_fracties_voor_PBD"},"engLabel":{"xml:lang":"en","type":"literal","value":"Fractions given for PBD"},"label":{"type":"literal","value":"Gegeven fracties voor PBD"}},{"iri":{"type":"uri","value":"http://localhost/rdf/ontology/Tumour_Treatment.Gegeven_plandosis_voor_PBD"},"engLabel":{"xml:lang":"en","type":"literal","value":"Planned dose given for PBD"},"label":{"type":"literal","value":"Gegeven plandosis voor PBD"}}]}}
+{
+  "head": {
+    "vars": [
+      "iri",
+      "label",
+      "engLabel"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.PCI"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "PCI"
+        },
+        "label": {
+          "type": "literal",
+          "value": "PCI"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.Geboortemaand"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Birth Month"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Geboortemaand"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.Geslacht"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Gender"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Geslacht"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.Invoerdatum"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Entry Date"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Invoerdatum"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.VraagType"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Question Type"
+        },
+        "label": {
+          "type": "literal",
+          "value": "VraagType"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.Vraagstelling"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Question"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Vraagstelling"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Outcome.Antwoord"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Answer"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Antwoord"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.PCI"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "PCI"
+        },
+        "label": {
+          "type": "literal",
+          "value": "PCI"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Geboortemaand"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Birth Month"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Geboortemaand"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Geslacht"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Gender"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Geslacht"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Overleden"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Death"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Overleden"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Datum_overlijden"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "date of death"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Datum overlijden"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Laatste_datum_check_in_leven"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "is alive last checked date"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Laatste datum check in leven"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Diagnose"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Diagnosis"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Diagnose"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Datum_diagnose"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Date of Diagnosis"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Datum diagnose"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.cT"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "clinical T stage"
+        },
+        "label": {
+          "type": "literal",
+          "value": "cT"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.cN"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "clinical N stage"
+        },
+        "label": {
+          "type": "literal",
+          "value": "cN"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.cM"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "clinical M stage"
+        },
+        "label": {
+          "type": "literal",
+          "value": "cM"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.PBD"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "plan radiation target area"
+        },
+        "label": {
+          "type": "literal",
+          "value": "PBD"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Zorgplan"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Health Plan"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Zorgplan"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Doelvolume_deel"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Target Volume part"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Doelvolume deel"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_fractiedosis"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "EPD - Prescribed fraction dose"
+        },
+        "label": {
+          "type": "literal",
+          "value": "EPD - Voorgeschreven fractiedosis"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_aantal_fracties"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "EPD - Prescribed number of fractions"
+        },
+        "label": {
+          "type": "literal",
+          "value": "EPD - Voorgeschreven aantal fracties"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_aantal_fracties_per_dag"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "EPD - Prescribed number of fractions per day"
+        },
+        "label": {
+          "type": "literal",
+          "value": "EPD - Voorgeschreven aantal fracties per dag"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.EPD_-_Voorgeschreven_plandosis"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "EPD - Prescribed planosis"
+        },
+        "label": {
+          "type": "literal",
+          "value": "EPD - Voorgeschreven plandosis"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Gegeven_fracties_voor_PBD"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Fractions given for PBD"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Gegeven fracties voor PBD"
+        }
+      },
+      {
+        "iri": {
+          "type": "uri",
+          "value": "http://localhost/rdf/ontology/Tumour_Treatment.Gegeven_plandosis_voor_PBD"
+        },
+        "engLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Planned dose given for PBD"
+        },
+        "label": {
+          "type": "literal",
+          "value": "Gegeven plandosis voor PBD"
+        }
+      }
+    ]
+  }
+}
