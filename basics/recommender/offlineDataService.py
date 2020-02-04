@@ -75,8 +75,8 @@ def extract_element_from_json(obj, path):
         return outer_arr
 
 
-columns_json = open("/home/nikhil/Documents/Projects/flask_recommender/basics/recommender/static/DB_labels.srj", "r")
-ontology_json = open("/home/nikhil/Documents/Projects/flask_recommender/basics/recommender/static/onto.srj", "r")
+columns_json = open("/home/nikhil/Documents/Projects/flask_tutorials/basics/recommender/static/DB_labels.srj", "r")
+ontology_json = open("/home/nikhil/Documents/Projects/flask_tutorials/basics/recommender/static/onto.srj", "r")
 
 columns_df = json.load(columns_json)
 ontology_list = json.load(ontology_json)
@@ -126,6 +126,22 @@ def get_selected_column(selected_id, posts):
     for p in posts:
         for s in selected_id:
             if int(p["id"]) == int(s):
+                selected_column.append({
+                    'label': p["label"],
+                    'iri': p["iri"],
+                    'engLabel': p["engLabel"],
+                    'table': p["table"],
+                    'id': p["id"],
+                    'predicted': get_predicted_labels(p["engLabel"]),
+                    'history': return_historical_finds(p["engLabel"])
+                })
+    return selected_column
+
+
+def get_selected_column_post(selected_id, posts):
+    selected_column = []
+    for p in posts:
+            if int(p["id"]) == selected_id:
                 selected_column.append({
                     'label': p["label"],
                     'iri': p["iri"],
@@ -198,7 +214,6 @@ def return_historical_finds(search_str):
             history.append({"label": i.DB, 'iri': i.Ontology, 'match_ratio': i.match_ratio})
     return history
 
-print(return_historical_finds("male"))
 
 def get_predicted_labels(ip_label):
     predicted_labels_with_iri = []

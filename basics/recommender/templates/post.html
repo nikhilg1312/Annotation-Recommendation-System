@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block inhalt %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+          <a class="mr-2" href="{{ post.iri }}">{{ post.label }}</a>
+          <small class="text-muted">{{ post.table }}</small>
+      </div>
+      <h2 class="article-title">{{ post.engLabel }}</h2>
+      <p class="article-content">{{ post.engLabel }}</p>
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Search in Ontology</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="collapse" data-target="#predictedCollapse" >Get Prediction</button>
+        </div>
+    </div>
+  </article>
+  <!-- Modal -->
+  <div class="collapse" id="predictedCollapse" tabindex="-1" role="dialog" aria-labelledby="predictedCollapse" aria-hidden="true">
+    <div class="collapse-dialog" role="document">
+      <div class="collapse-content">
+          <form action="{{ url_for('upload_history') }}" method="POST">
+                <div class="collapse-header">
+                  <h4 class="collapse-title">Predicted IRI</h4>
+                                <h6>Historical Recommendations</h6>
+                                <table>
+                                    {% if post.history != "Not found" %}
+                                        <tr>
+                                                {% for pVal in post.history %}
+                                                    <td> <p class="article-content"> <input type="checkbox" name="mycheckbox"  value={{pVal.iri}}> <a class="article-title" href="{{ pVal.iri }}">{{ pVal.label }}</a>  </p> </td>
+                                                    <td> {{pVal.match_ratio}} </td>
+                                                {% endfor %}
+                                        </tr>
+                                    {% else %}
+                                        <tr>No historical matches found</tr>
+                                    {% endif %}
+                                </table>
+                          <h6>Select a appropriate predicted value:</h6>
+                          {% for pVal in post.predicted %}
+                                <p class="article-content"> <input type="checkbox" name="mycheckbox" value={{pVal.iri}}> <a class="article-title" href="{{ pVal.iri }}">{{ pVal.label }}</a>  </p>
+                          {% endfor %}
+                </div>
+                <div class="collapse-footer">
+                        <input class="btn btn-danger" type="submit" value="History">
+                </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock inhalt %}

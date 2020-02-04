@@ -1,24 +1,30 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
+import re
+import uuid
+import base64
 
-wds = "http://as-fair-01.ad.maastro.nl:7200/repositories/area51_nik"
+as_fair = "http://as-fair-01.ad.maastro.nl:7200/repositories/area51_nickl"
+cancer_data = "http://sparql.cancerdata.org/namespace/historical_recommendations/sparql"
 
-rq_onto = """
+label_ip = '"Gender"'
+rq_onto = f"""
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-select ?iri  ?label ?engLabel where { 
+select ?iri  ?label ?engLabel where {{ 
     GRAPH <http://my.graph.sage> 
-    {	?iri ?p owl:Class .
+    {{	?iri ?p owl:Class .
         ?iri <http://um-cds/ontologies/databaseontology/column> ?label .
         optional
-        {
-            ?iri rdfs:label ?engLabel
+        {{
+            ?iri rdfs:label {label_ip}
             filter langMatches( lang(?engLabel), "EN" )
-        }
-	} 
-} 
+        }}
+	}} 
+}} 
 """
 
+print(rq_onto)
 rq_db_column = """
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -34,12 +40,32 @@ select ?iri ?label ?def where {
 } 
 """
 
+get_count_history = f"""
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-def runQuery():
-    sparql = SPARQLWrapper(wds)
-    sparql.setQuery(rq_db_column)
+select ?o1 (count(?o1) as ?count)
+where
+{{
+  ?s rdf:type ?o1;
+     rdfs:label {label_ip}
+}}
+group by ?o1
+"""
+
+
+def uuid_url64():
+    """Returns a unique, 16 byte, URL safe ID by combining UUID and Base64
+    """
+    rv = base64.b64encode(uuid.uuid4().bytes).decode('utf-8')
+    return re.sub(r'[\=\+\/]', lambda m: {'+': '-', '/': '_', '=': ''}[m.group(0)], rv)
+
+
+def runQuery(query, service):
+    sparql = SPARQLWrapper(service)
+    sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     return sparql.query().convert()
 
 
-print(runQuery())
+print(runQuery(get_count_history,cancer_data))

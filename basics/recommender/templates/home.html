@@ -9,7 +9,7 @@
                     <a class="mr-2" href="{{ post.iri }}">{{ post.label }}</a>
                   <small class="text-muted">{{ post.table }}</small>
                 </div>
-                <h2><a class="article-title" href="{{ post.iri }}">{{ post.engLabel }}</a></h2>
+                <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.engLabel }}</a></h2>
                 <p class="article-content">{{ post.engLabel }}</p>
               </div>
             </article>
