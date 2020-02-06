@@ -14,11 +14,11 @@
         </div>
     </div>
   </article>
-  <!-- Modal -->
+  <!-- Collapse -->
   <div class="collapse" id="predictedCollapse" tabindex="-1" role="dialog" aria-labelledby="predictedCollapse" aria-hidden="true">
     <div class="collapse-dialog" role="document">
       <div class="collapse-content">
-          <form action="{{ url_for('upload_history') }}" method="POST">
+          <form action="{{ url_for('upload_history', post_label=post.label) }}" method="POST">
                 <div class="collapse-header">
                   <h4 class="collapse-title">Predicted IRI</h4>
                                 <h6>Historical Recommendations</h6>
@@ -40,7 +40,7 @@
                           {% endfor %}
                 </div>
                 <div class="collapse-footer">
-                        <input class="btn btn-danger" type="submit" value="History">
+                        <input class="btn btn-danger" type="submit" value="Select">
                 </div>
           </form>
       </div>

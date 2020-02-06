@@ -1,6 +1,7 @@
 from flask import render_template, url_for, flash, redirect, jsonify, request
 from recommender import app
-from recommender.offlineDataService import get_column_names, get_selected_column,  get_selected_column_post
+from recommender.offlineDataService import get_column_names, get_selected_column, get_selected_column_post
+from recommender.onlineData import insert_history_cancerdataorg
 
 posts = get_column_names()
 
@@ -17,17 +18,17 @@ def home():
     return render_template('home.html', posts=posts)
 
 
-@app.route("/post/<int:post_id>")
+@app.route("/post/<int:post_id>", methods=['GET'])
 def post(post_id):
     opted_column = get_selected_column_post(post_id, posts)
-    print("in def post():",opted_column)
+    print("in def post():", opted_column)
     return render_template('post.html', post=opted_column[0])
 
 
-@app.route("/upload_history", methods=['GET', 'POST'])
-def upload_history():
-    print(request.form)
-    return render_template('home.html', posts=posts)
+@app.route("/upload_history/<post_label>", methods=['POST'])
+def upload_history(post_label):
+    insert_history_cancerdataorg(post_label, request.form['mycheckbox'])
+    return redirect(url_for('home'))
 
 
 @app.route("/predicted", methods=['GET', 'POST'])

@@ -109,6 +109,8 @@ def get_column_names():
 
     return all_columns
 
+cvb = get_column_names()
+a = 1+2
 
 def get_ontology_labels():
     iri_df = extract_element_from_json(ontology_list["results"], ["bindings", "iri", "value"])
