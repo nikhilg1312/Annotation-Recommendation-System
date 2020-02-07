@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, jsonify, request
 from recommender import app
-from recommender.offlineDataService import get_column_names, get_selected_column, get_selected_column_post
+from recommender.offlineDataService import get_column_names, get_selected_column_post, get_ontology_labels
 from recommender.onlineData import insert_history_cancerdataorg
 
 posts = get_column_names()
@@ -12,9 +12,6 @@ posts = get_column_names()
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        selected_column = get_selected_column(request.form.getlist('mycheckbox'), posts)
-        return render_template('predicted.html', posts=selected_column)
     return render_template('home.html', posts=posts)
 
 
@@ -22,7 +19,8 @@ def home():
 def post(post_id):
     opted_column = get_selected_column_post(post_id, posts)
     print("in def post():", opted_column)
-    return render_template('post.html', post=opted_column[0])
+    o_table = get_ontology_labels()
+    return render_template('post.html', post=opted_column[0], ontology_table = o_table)
 
 
 @app.route("/upload_history/<post_label>", methods=['POST'])

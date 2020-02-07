@@ -9,7 +9,7 @@
       <h2 class="article-title">{{ post.engLabel }}</h2>
       <p class="article-content">{{ post.engLabel }}</p>
         <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Search in Ontology</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" data-toggle="collapse" data-target="#searchCollapse" >Search in Ontology</a>
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="collapse" data-target="#predictedCollapse" >Get Prediction</button>
         </div>
     </div>
@@ -47,4 +47,21 @@
     </div>
   </div>
 
+
+  <div class="collapse" id="searchCollapse" tabindex="-1" role="dialog" aria-labelledby="predictedCollapse" aria-hidden="true">
+      <div class="collapse-dialog" role="document">
+          <div class="collapse-content">
+              <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for label..">
+                    <table id="myTable">
+                      <tr class="header">
+                        <th style="width:60%;">Label</th>
+                        <th style="width:40%;">iri</th>
+                      </tr>
+                      {% for onto_term in ontology_table %}
+                      <tr><th>{{onto_term.label}}</th><th>{{onto_term.iri}}</th></tr>
+                      {% endfor %}
+                    </table>
+          </div>
+      </div>
+  </div>
 {% endblock inhalt %}

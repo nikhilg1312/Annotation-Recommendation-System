@@ -3,10 +3,10 @@ from fuzzywuzzy import process
 from pyjarowinkler import distance
 import pandas as pd
 import spacy
+from recommender.onlineData import get_label_history
 
 pd.set_option('display.width', 900)
 pd.set_option('display.max_columns', 10)
-
 
 nlp = spacy.load('en_core_sci_lg')
 
@@ -107,10 +107,8 @@ def get_column_names():
         onto_temp = {'id': id, 'label': l, 'iri': i, 'engLabel': d, 'table': table}
         all_columns.append(onto_temp)
 
+    print("size of posts",len(all_columns))
     return all_columns
-
-cvb = get_column_names()
-a = 1+2
 
 def get_ontology_labels():
     iri_df = extract_element_from_json(ontology_list["results"], ["bindings", "iri", "value"])
@@ -119,40 +117,26 @@ def get_ontology_labels():
     for l, i, d in zip(label_df, iri_df, def_df):
         onto_temp = {'label': l, 'iri': i, 'definition': d}
         onto_full.append(onto_temp)
-
-    return json.dumps(onto_full)
-
-
-def get_selected_column(selected_id, posts):
-    selected_column = []
-    for p in posts:
-        for s in selected_id:
-            if int(p["id"]) == int(s):
-                selected_column.append({
-                    'label': p["label"],
-                    'iri': p["iri"],
-                    'engLabel': p["engLabel"],
-                    'table': p["table"],
-                    'id': p["id"],
-                    'predicted': get_predicted_labels(p["engLabel"]),
-                    'history': return_historical_finds(p["engLabel"])
-                })
-    return selected_column
+    return onto_full
 
 
 def get_selected_column_post(selected_id, posts):
+    print("________Inside select column post_____________________")
     selected_column = []
     for p in posts:
-            if int(p["id"]) == selected_id:
-                selected_column.append({
-                    'label': p["label"],
-                    'iri': p["iri"],
-                    'engLabel': p["engLabel"],
-                    'table': p["table"],
-                    'id': p["id"],
-                    'predicted': get_predicted_labels(p["engLabel"]),
-                    'history': return_historical_finds(p["engLabel"])
-                })
+        if int(p["id"]) == selected_id:
+            print("id : ", p["id"])
+            print("selected id: ", selected_id)
+            print("for_if_:",online_count_history_find(p["engLabel"]))
+            selected_column.append({
+                'label': p["label"],
+                'iri': p["iri"],
+                'engLabel': p["engLabel"],
+                'table': p["table"],
+                'id': p["id"],
+                'predicted': get_predicted_labels(p["engLabel"]),
+                'history': online_count_history_find(p["engLabel"])
+            })
     return selected_column
 
 
@@ -193,14 +177,15 @@ def count_unique_index(df, by):
     return df.groupby(by).size().reset_index().rename(columns={0: 'count'})
 
 
-def return_historical_finds(search_str):
+def offline_return_historical_finds(search_str):
     history = []
+
     ip_df = pd.read_csv("/home/nikhil/Documents/Projects/base_standard/gold_std/ip.csv")
     temp = pd.DataFrame()
     temp['DB_lower'] = ip_df['DB'].str.lower()
     ip_df = ip_df.join(temp)
 
-    ip_df = count_unique_index(ip_df, ['DB', 'Ontology','DB_lower'])
+    ip_df = count_unique_index(ip_df, ['DB', 'Ontology', 'DB_lower'])
     ip_df = ip_df.loc[ip_df.DB_lower == str.lower(search_str)]
     total_count = ip_df["count"].sum()
 
@@ -216,6 +201,15 @@ def return_historical_finds(search_str):
             history.append({"label": i.DB, 'iri': i.Ontology, 'match_ratio': i.match_ratio})
     return history
 
+def online_count_history_find(label):
+    history = []
+    his_df = get_label_history(label)
+
+    for h in his_df.itertuples(index=False):
+        history.append({"label": label, 'iri': h.iri, 'match_ratio': h.count})
+    return history
+
+
 
 def get_predicted_labels(ip_label):
     predicted_labels_with_iri = []
@@ -223,13 +217,13 @@ def get_predicted_labels(ip_label):
     lv_iri = search_iri_for_label(lv, ontology_df)
     jw = get_jaroWrinkler_pred(ip_label)
     jw_iri = search_iri_for_label(jw, ontology_df)
-    #p1, p2 = get_similar_ontology_term_nlp(ip_label)
-    #p1_iri = search_iri_for_label(p1, ontology_df)
-    #p2_iri = search_iri_for_label(p2, ontology_df)
+    # p1, p2 = get_similar_ontology_term_nlp(ip_label)
+    # p1_iri = search_iri_for_label(p1, ontology_df)
+    # p2_iri = search_iri_for_label(p2, ontology_df)
 
     predicted_labels_with_iri.append({'label': lv, 'iri': lv_iri})
     predicted_labels_with_iri.append({'label': jw, 'iri': jw_iri})
-    #predicted_labels_with_iri.append({'label': p1, 'iri': p1_iri})
-    #predicted_labels_with_iri.append({'label': p2, 'iri': p2_iri})
+    # predicted_labels_with_iri.append({'label': p1, 'iri': p1_iri})
+    # predicted_labels_with_iri.append({'label': p2, 'iri': p2_iri})
 
     return predicted_labels_with_iri
