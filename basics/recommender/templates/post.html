@@ -57,8 +57,8 @@
                         <th style="width:60%;">Label</th>
                         <th style="width:40%;">iri</th>
                       </tr>
-                      {% for onto_term in ontology_table %}
-                      <tr><th>{{onto_term.label}}</th><th>{{onto_term.iri}}</th></tr>
+                        {% for onto_term in ontology_table %}
+                      <tr><td>{{onto_term.label}}</td><td>{{onto_term.iri}}</td></tr>
                       {% endfor %}
                     </table>
           </div>

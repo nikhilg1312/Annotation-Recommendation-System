@@ -143,4 +143,3 @@ def online_count_history_find(label):
         return history
 
 
-print(online_count_history_find("gender"))
