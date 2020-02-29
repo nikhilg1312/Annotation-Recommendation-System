@@ -103,7 +103,7 @@ def get_column_names():
     for l, i, d, id in zip(label_df, iri_df, eng_label_df, range(len(label_df))):
         # d = d.partition(".")[2]
         # regex = r"\gy/(.*?)\."
-        table = "TableName"
+        table = "TumourTreatment"
         onto_temp = {'id': id, 'label': l, 'iri': i, 'engLabel': d, 'table': table}
         all_columns.append(onto_temp)
 
